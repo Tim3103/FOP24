@@ -17,3 +17,7 @@ maxi Z Z = Z
 maxi Z (S y) = (S y)
 maxi (S x) Z = (S x)
 maxi (S x) (S y) = S (maxi x y)
+
+minus :: N -> N -> N
+minus Z b = Z ; minus a Z = a 
+minus (S a') (S b') = minus a' b'
