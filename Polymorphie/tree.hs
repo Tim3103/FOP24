@@ -44,3 +44,8 @@ inord t = case t of
 -- Cons 2 (Cons 4 (app Nil (Cons 3 Nil)))
 -- Cons 2 (Cons 4 (Cons 3 Nil))
 
+post :: forall a . Bin a -> List a
+post t = case t of
+  Leaf -> Nil
+  Branch l k r -> app (app (post l) (post r)) (Cons k Nil)
+
