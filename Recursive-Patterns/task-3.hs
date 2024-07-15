@@ -6,6 +6,11 @@ data N = Z | S N deriving Show
 plus :: N -> N -> N
 plus Z y = y
 plus (S x) y = S (plus x y)
+
+maxN :: N -> N -> N
+maxN Z y = y
+maxN x Z = x
+maxN (S x) (S y) = S (maxN x y)
   
 fold :: (a -> b) -> (b -> b -> b) -> (Tree a -> b)
 
@@ -19,4 +24,8 @@ summe_branches = fold (\ x -> Z) (\ x y -> S (plus x y)) (Branch (Leaf Z) (Leaf 
  
 summe_keys = fold (\ x -> x) plus (Branch (Leaf Z) (Leaf Z))
 
-depth = fold (\ x -> Z) (\ x y -> plus x y) (Branch (Branch (Leaf Z) (Leaf Z)) (Branch (Branch (Leaf Z) (Leaf Z)) (Leaf Z)))
+depth = fold (\ x -> Z) (\ x y -> S (maxN x y)) (Branch (Branch (Leaf Z) (Leaf Z)) (Branch (Branch (Leaf Z) (Leaf Z)) (Leaf Z)))
+
+biggest_key = fold (\ x -> x) (\ x y -> maxN x y) (Branch (Branch (Leaf (S Z)) (Leaf Z)) (Branch (Branch (Leaf Z) (Leaf Z)) (Leaf Z)))
+
+bottomleft_key = fold (\ x -> x) (\ x y -> x) (Branch (Branch (Branch (Leaf (S Z)) (Leaf Z)) (Leaf Z)) (Branch (Branch (Leaf Z) (Leaf Z)) (Leaf Z)))
