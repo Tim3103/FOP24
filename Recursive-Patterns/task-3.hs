@@ -29,3 +29,4 @@ depth = fold (\ x -> Z) (\ x y -> S (maxN x y)) (Branch (Branch (Leaf Z) (Leaf Z
 biggest_key = fold (\ x -> x) (\ x y -> maxN x y) (Branch (Branch (Leaf (S Z)) (Leaf Z)) (Branch (Branch (Leaf Z) (Leaf Z)) (Leaf Z)))
 
 bottomleft_key = fold (\ x -> x) (\ x y -> x) (Branch (Branch (Branch (Leaf (S Z)) (Leaf Z)) (Leaf Z)) (Branch (Branch (Leaf Z) (Leaf Z)) (Leaf Z)))
+
